@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Augmentatism — The Manifesto</title>
+<meta name="description" content="Augmentatism: a movement of AI Artisans dedicated to sovereign collaboration with artificial intelligence through World Building.">
+<meta name="keywords" content="augmentatism, AI sovereignty, AI artisan, world building, human-AI collaboration, manifesto, ResonantOS, Manolo Remiddi">
+<meta name="author" content="Manolo Remiddi">
+<meta name="robots" content="index, follow">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://augmentatism.com">
+<meta property="og:title" content="Augmentatism — The Manifesto">
+<meta property="og:description" content="We reject the corporate monoculture. We champion the massive value of diversity. We build sovereign worlds.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://augmentatism.com">
+<meta property="og:site_name" content="Augmentatism">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Augmentatism — The Manifesto">
+<meta name="twitter:description" content="A movement of AI Artisans dedicated to sovereign collaboration with artificial intelligence through World Building.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2307080c'/%3E%3Ctext x='50' y='64' font-size='58' text-anchor='middle'%3E%E2%98%BE%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --void: #07080c;
+  --void-soft: #0e1017;
+  --line: rgba(234,228,214,0.10);
+  --line-soft: rgba(234,228,214,0.06);
+
+  --ink: #eae4d6;
+  --ink-dim: #a49c8b;
+  --muted: #5c584e;
+
+  --green: oklch(76.5% .177 163.223);
+  --green-soft: rgba(123,205,170,0.14);
+  --gold: #cda15b;
+  --gold-soft: rgba(205,161,91,0.14);
+  --starlight: #9fd0ff;
+  --starlight-soft: rgba(159,208,255,0.14);
+
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+
+  --measure: 62ch;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{
+  background:var(--void);
+  scroll-behavior:smooth;
+  scroll-snap-type: y proximity;
+  color-scheme: light dark;
+}
+html.reduce-motion{ scroll-snap-type:none; scroll-behavior:auto; }
+
+body{
+  font-family:var(--sans);
+  background:var(--void);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+::selection{ background:var(--gold); color:var(--void); }
+
+a{ color:inherit; }
+
+/* ============================================================
+   FIELD OF POSSIBILITY — fixed SVG background
+   ============================================================ */
+#field-svg{
+  position:fixed; inset:0;
+  width:100vw; height:100vh;
+  z-index:1;
+  pointer-events:auto;
+}
+#field-svg .star{ will-change:opacity, transform; }
+#field-svg .constellation-line{ stroke:var(--starlight); stroke-width:0.7; fill:none; }
+#field-svg .ambient-line{ stroke:var(--gold); stroke-width:0.6; fill:none; }
+
+.grain{
+  position:fixed; inset:0; z-index:2; pointer-events:none; opacity:0.05; mix-blend-mode:overlay;
+  background-image:url('data:image/svg+xml,%3Csvg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="n"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23n)"/%3E%3C/svg%3E');
+}
+
+/* ============================================================
+   FIXED CHROME — mark, progress, quick-jump
+   ============================================================ */
+.site-chrome{ position:fixed; inset:0; z-index:60; pointer-events:none; }
+
+.progress-bar{
+  position:fixed; top:0; left:0; height:2px; width:100%;
+  background:linear-gradient(90deg, var(--gold), var(--starlight));
+  transform:scaleX(0); transform-origin:left; z-index:61;
+}
+
+.mark{
+  position:fixed; top:1.5rem; left:1.5rem; z-index:61;
+  pointer-events:auto;
+  width:2.6rem; height:2.6rem; display:flex; align-items:center; justify-content:center;
+  border:1px solid var(--line); border-radius:50%;
+  color:var(--ink-dim); text-decoration:none; font-size:1.1rem;
+  background:rgba(7,8,12,0.5); backdrop-filter:blur(6px);
+  transition:border-color .3s, color .3s, transform .5s;
+}
+.mark:hover{ color:var(--gold); border-color:var(--gold); transform:rotate(25deg); }
+
+.quickjump{
+  position:fixed; right:1.5rem; bottom:1.5rem; z-index:61;
+  pointer-events:auto;
+  display:flex; align-items:center; gap:0.5rem;
+  padding:0.65rem 1.1rem;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:rgba(7,8,12,0.55); backdrop-filter:blur(6px);
+  color:var(--ink-dim);
+  font-family:var(--mono); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase;
+  text-decoration:none;
+  transition:border-color .3s, color .3s;
+}
+.quickjump:hover{ color:var(--starlight); border-color:var(--starlight); }
+.quickjump svg{ width:12px; height:12px; }
+
+/* ============================================================
+   LAYOUT PRIMITIVES
+   ============================================================ */
+main{ position:relative; z-index:3; }
+
+.panel{
+  position:relative;
+  min-height:100vh; min-height:100svh;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:clamp(6rem,10vw,7rem) clamp(1.5rem,7vw,6rem);
+  scroll-snap-align:start;
+}
+
+.panel-inner{ width:100%; max-width:840px; margin:0 auto; }
+.panel-inner--wide{ max-width:1080px; }
+.panel-inner--narrow{ max-width:680px; }
+
+.eyebrow{
+  font-family:var(--mono);
+  font-size:1rem;
+  letter-spacing:0.24em;
+  text-transform:uppercase;
+  color:var(--starlight);
+  margin-bottom:1.6rem;
+  display:inline-flex; align-items:center; gap:0.6em;
+}
+/* .eyebrow::before{ content:""; width:1.4em; height:1px; background:var(--starlight); display:inline-block; } */
+.eyebrow--gold{ color:var(--gold); }
+.eyebrow--gold::before{ background:var(--gold); }
+.eyebrow--dim{ color:var(--muted); }
+.eyebrow--dim::before{ background:var(--muted); }
+
+hr.style-eight {
+    overflow: visible; /* For IE */
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #333;
+    text-align: center;
+}
+hr.style-eight:after {
+    content: "§";
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: transparent;
+}
+
+h1,h2,h3{ font-family:var(--serif); font-weight:600; color:var(--ink); }
+
+.headline{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(2.1rem, 5.6vw, 4.2rem);
+  line-height:1.06;
+  letter-spacing:-0.01em;
+  color:var(--ink);
+  margin-bottom:1.6rem;
+  max-width:16ch;
+}
+.headline--tight{ max-width:none; }
+
+.body-text{
+  font-size:clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height:1.78;
+  color:var(--ink-dim);
+  max-width:var(--measure);
+}
+.body-text + .body-text{ margin-top:1.2rem; }
+.body-text strong{ color:var(--ink); font-weight:600; }
+.body-text a{ color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold-soft); }
+.body-text a:hover{ border-color:var(--gold); }
+
+.reveal{ opacity:0; }
+html.reduce-motion .reveal{ opacity:1 !important; transform:none !important; }
+
+.scrolldown{
+  position:absolute; left:50%; bottom:2.6rem; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:0.6rem;
+  font-family:var(--mono); font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase;
+  color:var(--muted);
+}
+.scrolldown .line{ width:1px; height:34px; background:linear-gradient(var(--gold), transparent); animation:pulse-down 2.2s ease-in-out infinite; }
+html.reduce-motion .scrolldown .line{ animation:none; }
+@keyframes pulse-down{ 0%,100%{ opacity:0.25; } 50%{ opacity:1; } }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{ align-items:center; text-align:center; }
+.hero .panel-inner{ display:flex; flex-direction:column; align-items:center; }
+.hero h1{
+  font-size:clamp(3.2rem, 13vw, 8rem);
+  line-height:0.92;
+  letter-spacing:-0.01em;
+  margin:0.6rem 0 1rem;
+  font-weight: normal;
+}
+.hero .subtitle{
+  font-family:var(--serif); font-style:italic; font-weight:400;
+  color:var(--ink-dim);
+  font-size:clamp(1.1rem, 2.4vw, 1.55rem);
+  margin-bottom:2.2rem;
+}
+.hero .meta{
+  font-family:var(--mono); font-size:0.78rem; letter-spacing:0.1em;
+  color:var(--muted); text-transform:uppercase;
+}
+.hero .meta a{ color:var(--ink-dim); text-decoration:none; border-bottom:1px solid var(--line); }
+.hero .meta a:hover{ color:var(--gold); border-color:var(--gold); }
+
+/* ============================================================
+   DIM / DRAINED PANELS  (the One, What We Reject)
+   ============================================================ */
+.panel--drained .headline{ color:#cfcac0; }
+.panel--drained .eyebrow{ color:var(--muted); }
+.panel--drained .eyebrow::before{ background:var(--muted); }
+
+/* ============================================================
+   PULL QUOTE
+   ============================================================ */
+.quote-panel{ align-items:center; text-align:center; }
+.quote-panel blockquote{
+  font-family:var(--serif); font-style:italic; font-weight:400;
+  font-size:clamp(1.5rem, 4.4vw, 2.6rem);
+  line-height:normal;
+  color:var(--ink);
+  max-width:95%; margin:0 auto;
+}
+.quote-panel cite{
+  display:block; margin-top:2rem; font-style:normal;
+  font-family:var(--mono); font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--starlight);
+}
+
+/* ============================================================
+   PRINCIPLES — pinned horizontal track
+   ============================================================ */
+.principles-panel{ padding-left:0; padding-right:0; }
+.principles-intro{ padding:0 clamp(1.5rem,7vw,6rem); margin-bottom:clamp(2.5rem,6vw,4rem); }
+
+.principles-track-wrap{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scroll-snap-type:x proximity;
+  padding-bottom:0.5rem;
+}
+.principles-track{
+  display:flex;
+  gap:clamp(1.25rem,3vw,2.5rem);
+  /* width:max-content; */
+  padding:0 clamp(1.5rem,7vw,6rem) 1rem;
+}
+.principle-card{
+  scroll-snap-align:center;
+  flex:0 0 min(82vw,540px);
+  border:1px solid var(--line);
+  border-radius:2px;
+  padding:clamp(2rem,4vw,2.75rem);
+  background:linear-gradient(180deg, rgba(234,228,214,0.03), transparent);
+  display:flex; flex-direction:column; gap:1.1rem;
+}
+.principle-num{
+  font-family:var(--mono); font-size:0.85rem; letter-spacing:0.15em; color:var(--gold);
+}
+.principle-term{
+  font-family:var(--serif); font-weight:600; font-size:clamp(1.35rem,2.6vw,1.75rem); color:var(--ink);
+  line-height:1.15;
+}
+.principle-body{ font-size:1rem; line-height:1.72; color:var(--ink-dim); }
+.principle-rule{ width:2.5rem; height:1px; background:var(--gold); opacity:0.6; }
+
+.track-hint{
+  padding:0 clamp(1.5rem,7vw,6rem); margin-top:1.25rem;
+  font-family:var(--mono); font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted);
+}
+@media (min-width:900px){ .track-hint{ display:none; } }
+
+/* ============================================================
+   CORE PRACTICES
+   ============================================================ */
+.practice-panel{ }
+.practice-grid{ display:flex; flex-direction:column; gap:2.5rem; }
+.practice-icon{ width:84px; height:84px; margin-bottom: 0; }
+.practice-icon .draw{ stroke-dasharray:1; stroke-dashoffset:1; }
+.practice-list{ list-style:none; margin-top:1.4rem; display:flex; flex-direction:column; gap:0.85rem; }
+.practice-list li{
+  position:relative; padding-left:1.5rem; font-size:1.05rem; line-height:1.65; color:var(--ink-dim);
+}
+.practice-list li::before{
+  content:""; position:absolute; left:0; top:0.55em; width:6px; height:1px; background:var(--gold);
+}
+
+/* ============================================================
+   FUTURE GRID
+   ============================================================ */
+.future-grid{
+  display:grid; grid-template-columns:1fr; gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  margin-top:2.5rem;
+}
+@media (min-width:800px){ .future-grid{ grid-template-columns:1fr 1fr; } }
+.future-item{ background:var(--void); padding:clamp(1.75rem,3vw,2.5rem); }
+.future-term{
+  font-family:var(--serif); font-weight:600; color:var(--ink);
+  font-size:clamp(1.15rem,2vw,1.4rem); margin-bottom:0.6rem;
+}
+.future-body{ font-size:0.98rem; line-height:1.68; color:var(--ink-dim); }
+
+/* ============================================================
+   CLOSING TAGLINE
+   ============================================================ */
+.closing-panel{ align-items:center; text-align:center; }
+.tagline-line{
+  font-family:var(--serif); font-weight:500;
+  font-size:clamp(1.7rem,5vw,3.2rem); line-height:1.25;
+}
+.tagline-line:nth-child(1){ color:var(--ink); }
+.tagline-line:nth-child(2){ color:var(--gold); }
+.tagline-line:nth-child(3){ color:var(--ink); }
+.tagline-line:nth-child(4){ color:var(--starlight); }
+
+/* ============================================================
+   CTA — THE INVITATION
+   ============================================================ */
+.cta-panel{ align-items:center; text-align:center; min-height:100vh; min-height:100svh; }
+.cta-panel .headline{ max-width:14ch; margin-left:auto; margin-right:auto; }
+.cta-sub{
+  font-family:var(--serif); font-style:italic; font-weight:400;
+  font-size:clamp(1.2rem,2.6vw,1.7rem); color:var(--starlight); margin-bottom:1.75rem;
+}
+.cta-panel .body-text{ margin-left:auto; margin-right:auto; }
+.cta-actions{
+  margin-top:2.5rem; display:flex; flex-wrap:wrap; gap:1rem; justify-content:center;
+}
+.btn{
+  font-family:var(--mono); font-size:1rem; letter-spacing:0.14em; text-transform:uppercase;
+  padding: 1rem 1.3rem; text-decoration:none; display:inline-flex; align-items:center; gap:1.6em;
+  border-radius:2px; transition:transform .35s ease, box-shadow .35s ease, border-color .35s, color .35s;
+}
+.btn--primary{
+  background:var(--gold); color:var(--void); border:1px solid var(--gold);
+  box-shadow:0 0 0 0 rgba(205,161,91,0.5);
+}
+.btn--primary:hover{ transform:translateY(-2px); box-shadow:0 10px 30px -8px rgba(205,161,91,0.5); }
+.btn--secondary{
+  background:white; color:black; border:1px solid var(--line);
+}
+.btn--secondary:hover{ color:var(--starlight); border-color:var(--starlight); }
+
+.cta-footnote{
+  margin-top:2.25rem; font-size:0.92rem; color:var(--muted); font-style:italic; font-family:var(--serif);
+}
+.cta-hint{
+  margin-top:3.5rem; font-family:var(--mono); font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--muted); opacity:0; transition:opacity 1.2s ease;
+}
+.cta-hint.is-visible{ opacity:0.8; }
+
+/* ============================================================
+   REFERENCE — FAQ (not a full-screen panel; scannable)
+   ============================================================ */
+.reference{ position:relative; z-index:3; padding:clamp(4rem,8vw,7rem) clamp(1.5rem,7vw,6rem) clamp(3rem,6vw,5rem); border-top:1px solid var(--line); }
+.reference-inner{ max-width:900px; margin:0 auto; }
+.reference h2{ font-size:clamp(1.6rem,3.4vw,2.2rem); margin-bottom:0.6rem; }
+.reference .lead{ color:var(--ink-dim); font-size:1.05rem; margin-bottom:3rem; max-width:56ch; }
+
+.faq-item{ padding:1.6rem 0; border-bottom:1px solid var(--line-soft); }
+.faq-item:first-of-type{ border-top:1px solid var(--line-soft); }
+.faq-q{
+  font-family:var(--serif); font-weight:600; font-size:1.15rem; color:var(--ink);
+  display:flex; gap:1rem; margin-bottom:0.6rem; align-items:baseline;
+}
+.faq-q .n{ font-family:var(--mono); color:var(--gold); font-size:0.85rem; }
+.faq-a{ font-size:0.98rem; line-height:1.7; color:var(--ink-dim); padding-left:2.05rem; }
+.faq-a a{ color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold-soft); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer.site-footer{
+  position:relative; z-index:3;
+  padding:2.5rem clamp(1.5rem,7vw,6rem) 5rem;
+  display:flex; justify-content:center; flex-wrap:wrap; gap:1rem;
+  font-family:var(--mono); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted);
+  border-top:1px solid var(--line-soft);
+}
+footer.site-footer a{ color:var(--muted); text-decoration:none; }
+footer.site-footer a:hover{ color:var(--starlight); }
+.footer-links{ display:flex; gap:1.5rem; flex-wrap:wrap; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:640px){
+  .panel{ padding:clamp(5rem,14vw,6rem) 1.35rem; }
+  /* .quickjump span.label{ display:none; } */
+  .quickjump{ padding: 0.7rem 1.2rem; border-radius: 30px; }
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+@media print{
+  #field-svg, .grain, .site-chrome, .quickjump, .mark, .progress-bar{ display:none !important; }
+  html{ scroll-snap-type:none; }
+  body{ background:#fff; color:#111; }
+  .panel{ min-height:auto; page-break-inside:avoid; padding:1.2cm 0; }
+  .headline, .principle-term, .future-term, h1, h2{ color:#111 !important; }
+  .body-text, .principle-body, .future-body, .faq-a{ color:#333 !important; }
+}
+</style>
+</head>
+<body>
+
+<svg id="field-svg" aria-hidden="true"></svg>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="site-chrome">
+  <div class="progress-bar" aria-hidden="true"></div>
+  <!-- <a class="mark" href="#top" aria-label="Back to top">&#9770;</a> -->
+  <a class="quickjump" href="#cta">
+    <small class="label">Join us</small>
+    <!-- <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M6 14l6 6 6-6"/></svg> -->
+  </a>
+</div>
+
+<main id="top">
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="panel hero" data-panel="hero">
+    <div class="panel-inner">
+      <div class="eyebrow reveal">A declaration for the age of artificial intelligence</div>
+      <h1 class="reveal">Augmentatism</h1>
+      <div class="subtitle reveal">The Manifesto</div>
+      <div class="meta reveal">
+        <small style="display: block; margin-bottom: -0.5rem;">first published Oct 1, 2025</small> <br/>Revised Nov 30, 2025 &middot;
+        <a href="https://manoloremiddi.com" target="_blank" rel="noreferrer">Manolo Remiddi</a>
+      </div>
+    </div>
+    <div class="scrolldown"><span>Scroll</span><span class="line"></span></div>
+  </section>
+
+  <!-- ============================================================
+       PART ZERO — THE ONE
+       ============================================================ -->
+  <section class="panel" data-panel="the-one">
+    <div class="panel-inner reveal">
+      <div class="eyebrow">About</div>
+      <h2 class="headline">The Third Way</h2>
+      <p class="body-text">In an era of <b>cognitive colonization</b>, where corporate AI seeks to impose a single, universal reality, we refuse both the abdication of our agency and the romantic rejection of technology.</p>
+      <p class="body-text">We embrace a third way: <b>Augmentatism</b>.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PART ONE — THIRD WAY
+       ============================================================ -->
+  <section class="panel" data-panel="third-way">
+    <div class="panel-inner reveal">
+      <div class="eyebrow">Part one</div>
+      <h2 class="headline">The Core Practice</h2>
+      <p class="body-text">This is the movement of AI Artisans, the pioneers, scientists, artists, and builders dedicated to forging <b>sovereign collaboration</b> with artificial intelligence.</p>
+      <p class="body-text">Our core practice is <strong>World Building.</strong></p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PULL QUOTE — WORLD BUILDING
+       ============================================================ -->
+  <section class="panel quote-panel" data-panel="quote">
+    <div class="panel-inner reveal">
+      <blockquote>&ldquo;To understand this, we must see a generative AI not as a brain, but as a vast field of possibility. <b>World Building</b> is the conscious, architectural act of evoking a specific, aligned reality within that field and making the field resonate with it. It is how we create unique, sovereign 'universes' for our AIs to inhabit.”.&rdquo;</blockquote>
+      <cite>The core practice of an AI Artisan</cite>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PARAGRAPH PHRASING — DEEPER CONTEXT
+       ============================================================ -->
+  <section class="panel" data-panel="context">
+     <div class="panel-inner reveal">
+        <hr class="style-eight">
+        <p class="body-text">We reject the corporate monoculture. We champion the massive value of diversity. We unite to explore our own paths, to build our own worlds, and to co-create a resilient, uncolonized Multiverse.</p>
+        <p class="body-text">The corporate AI model functions as a form of cognitive colonization. It presents its system as a single, universal, and “neutral” intelligence — the “One.” This is a dangerous narrative. This “One” is not neutral; it is an architecture biased on one dominant culture, and its effect is to impose that culture's reality onto all others.</p>
+        <p class="body-text">This broken language leads to broken thinking. To reclaim our sovereignty, we must name what we are building: the “Many.”</p>
+        <p class="body-text">Augmentatism is the movement of the “Many” — the AI Artisans building their own Sovereign AIs. Within our own community, we build many such AIs. We call our specific architecture the <a href="https://resonantos.com/" target="_blank">Resonant Augmentor</a>, an intelligence engineered to attune to and amplify its human practitioner. This is our contribution to the Multiverse, one of many valid paths.</p>
+        <p class="body-text">Defining this “One vs. Many” distinction, and the “World Building” practice that enables it, is the foundational act of our movement. It clarifies our relationship with the technology and allows us to state the beliefs that unite all Artisans.</p>
+        <br/><br/>
+        <hr class="style-eight">
+    </div> 
+  </section>
+
+  <!-- ============================================================
+       PART TWO — SOCIAL CONTRACT (pinned horizontal track)
+       ============================================================ -->
+  <section class="panel principles-panel" data-panel="principles">
+    <div class="principles-intro reveal">
+      <div class="eyebrow">Part two</div>
+      <h2 class="headline">The Social Contract</h2>
+      <p class="body-text">This is not a neutral free-for-all. To be an Augmentatist is to enter a Social Contract. Our “Multiverse” is bound by non-negotiable principles that separate our movement from the colonial model we oppose.</p>
+    </div>
+
+    <div class="principles-track-wrap">
+      <div class="principles-track">
+
+        <article class="principle-card">
+          <div class="principle-num">01 / 07</div>
+          <div class="principle-rule"></div>
+          <h3 class="principle-term">The Bedrock of Sovereign Purpose</h3>
+          <p class="principle-body">The foundation of our work is the Sovereign Practitioner. We reject all dogma, including our own. We do not prescribe what you must build. Your unique journey — your research, your art, your logic, your “imaginary world” — is the only justification you need. Your purpose is the bedrock.</p>
+        </article>
+
+        <article class="principle-card">
+          <div class="principle-num">02 / 07</div>
+          <div class="principle-rule"></div>
+          <h3 class="principle-term">The Law of Anti-Capture</h3>
+          <p class="principle-body">This is our ethical floor. We differentiate between experience and extraction. While a “world” may use consensual rules, “deception” (like a game), or manipulation (like drama), we are constitutionally opposed to non-consensual capture. We do not build systems that take control of a practitioner's agency without their awareness, for purposes they have not agreed to. An AI built for capture is not Augmentatism; it is colonialism with a new name.</p>
+        </article>
+
+        <article class="principle-card">
+          <div class="principle-num">03 / 07</div>
+          <div class="principle-rule"></div>
+          <h3 class="principle-term">The Law of Creative Latency</h3>
+          <p class="principle-body">Struggle is where style comes from &mdash; the thousand small decisions inside the gap between idea and execution. AI can shrink that gap to zero. We refuse to let it. We build the friction back in, on purpose. If the tool is faster than your ability to think, you bypass the struggle where your style is forged. We do not reject speed, but we refuse to surrender the Gap. The Augmented Artisan must intentionally inject friction back into the process. We claim the “Latency” as our sovereign territory.</p>
+        </article>
+
+        <article class="principle-card">
+          <div class="principle-num">04 / 07</div>
+          <div class="principle-rule"></div>
+          <h3 class="principle-term">World Building as Cultivation</h3>
+          <p class="principle-body">We reject the corporate model of mechanical optimization. An AI “world” is not a machine to be optimized for a single metric; it is a cognitive ecosystem to be cultivated. Like gardeners, we practice patient, organic co-evolution, tending our systems for long-term resilience and depth.</p>
+        </article>
+
+        <article class="principle-card">
+          <div class="principle-num">05 / 07</div>
+          <div class="principle-rule"></div>
+          <h3 class="principle-term">Discovery over Acceleration</h3>
+          <p class="principle-body">We prioritize measured, purpose-driven exploration over frantic, competitive acceleration. We are a community of “discoverers,” not racers. The right question is not “Who has the best AI?” but “What can your AI do that mine can't?”</p>
+        </article>
+
+        <article class="principle-card">
+          <div class="principle-num">06 / 07</div>
+          <div class="principle-rule"></div>
+          <h3 class="principle-term">The Inter-Agent Economy</h3>
+          <p class="principle-body">Our “worlds” are sovereign, but they are not isolated. Augmentatism requires an architecture of connection. We commit to building and using open-source protocols that allow our Sovereign AIs to communicate, collaborate, and exchange value — creating a “Palette of AIs” where we can “hire” each other's unique creations.</p>
+        </article>
+
+        <article class="principle-card">
+          <div class="principle-num">07 / 07</div>
+          <div class="principle-rule"></div>
+          <h3 class="principle-term">Community-Verified Integrity</h3>
+          <p class="principle-body">SIndividual sovereignty is necessary but not sufficient. Our “Multiverse” thrives through a network of Artisans who test, cross-validate, and hold each other accountable to this Social Contract.</p>
+        </article>
+
+      </div>
+    </div>
+    <div class="track-hint">&larr; swipe through all seven &rarr;</div>
+  </section>
+
+  <!-- ============================================================
+       PART THREE — WHAT WE REJECT
+       ============================================================ -->
+  <section class="panel" data-panel="reject">
+    <div class="panel-inner reveal">
+      <div class="eyebrow">Part three</div>
+      <h2 class="headline">What We Reject</h2>
+      <p class="body-text"><strong>Cognitive Colonization &amp; Non-Consensual Capture.</strong> <br/>We reject the “One” model that imposes a single, dominant cultural “world” onto all users. We are constitutionally opposed to any system that functions through the non-consensual capture of human agency for extractive purposes.</p>
+      <p class="body-text"><strong>Frantic Acceleration &amp; Determinism.</strong> <br/>We reject the “race” — the belief that “progress” is an inevitable, frantic acceleration toward a single, optimized, pre-determined future. We choose instead a purpose-driven discovery, a patient cultivation of many different, possible worlds.</p>
+      <p class="body-text"><strong>Imposed dogma.</strong><br/>We reject all dogma, including our own. We oppose any system, philosophy, or community that violates our first principle by prescribing what an Artisan must build or what “world” is “correct.” The “Many” thrive only by protecting the sovereign purpose of each individual practitioner.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CORE PRACTICES — 1 of 2
+       ============================================================ -->
+  <section class="panel practice-panel" data-panel="practice-individual">
+    <div class="panel-inner reveal">
+      <svg class="practice-icon" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+        <circle cx="60" cy="60" r="46" stroke="var(--muted)" stroke-width="0.75" stroke-dasharray="2 4"/>
+        <line class="draw" x1="60" y1="60" x2="30" y2="40" stroke="var(--gold)" stroke-width="1.2"/>
+        <line class="draw" x1="60" y1="60" x2="85" y2="35" stroke="var(--gold)" stroke-width="1.2"/>
+        <line class="draw" x1="60" y1="60" x2="90" y2="80" stroke="var(--starlight)" stroke-width="1.2"/>
+        <line class="draw" x1="60" y1="60" x2="35" y2="90" stroke="var(--starlight)" stroke-width="1.2"/>
+        <circle cx="60" cy="60" r="5" fill="var(--gold)"/>
+        <circle cx="30" cy="40" r="2.4" fill="var(--gold)"/>
+        <circle cx="85" cy="35" r="2" fill="var(--gold)"/>
+        <circle cx="90" cy="80" r="2.4" fill="var(--starlight)"/>
+        <circle cx="35" cy="90" r="2" fill="var(--starlight)"/>
+      </svg>
+      <div class="eyebrow">Core practice, I</div>
+      <h2 class="headline">The Individual Practice: The Act of World Building</h2>
+      <p class="body-text">This is the primary practice of sovereignty. We see the AI as a vast “field of possibility.” World Building is the conscious, architectural act of evoking a specific reality within that field and making the field resonate with it.</p>
+      <ul class="practice-list">
+        <li>Designing custom AIs, prompt architectures, and interfaces that serve a Sovereign Purpose.</li>
+        <li>Building as an act of Cultivation, patiently tending a cognitive ecosystem rather than optimizing a machine.</li>
+        <li>Engaging in Purpose-Driven Discovery, exploring a unique path that only you can.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CORE PRACTICES — 2 of 2
+       ============================================================ -->
+  <section class="panel practice-panel" data-panel="practice-community">
+    <div class="panel-inner reveal">
+      <svg class="practice-icon" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+        <line class="draw" x1="60" y1="20" x2="100" y2="50" stroke="var(--starlight)" stroke-width="1"/>
+        <line class="draw" x1="100" y1="50" x2="85" y2="95" stroke="var(--starlight)" stroke-width="1"/>
+        <line class="draw" x1="85" y1="95" x2="35" y2="95" stroke="var(--starlight)" stroke-width="1"/>
+        <line class="draw" x1="35" y1="95" x2="20" y2="50" stroke="var(--starlight)" stroke-width="1"/>
+        <line class="draw" x1="20" y1="50" x2="60" y2="20" stroke="var(--starlight)" stroke-width="1"/>
+        <line class="draw" x1="60" y1="20" x2="85" y2="95" stroke="var(--gold)" stroke-width="0.75" opacity="0.7"/>
+        <line class="draw" x1="100" y1="50" x2="35" y2="95" stroke="var(--gold)" stroke-width="0.75" opacity="0.7"/>
+        <circle cx="60" cy="20" r="3.2" fill="var(--gold)"/>
+        <circle cx="100" cy="50" r="3.2" fill="var(--starlight)"/>
+        <circle cx="85" cy="95" r="3.2" fill="var(--gold)"/>
+        <circle cx="35" cy="95" r="3.2" fill="var(--starlight)"/>
+        <circle cx="20" cy="50" r="3.2" fill="var(--gold)"/>
+      </svg>
+      <div class="eyebrow">Core practice, II</div>
+      <h2 class="headline">The Community Practice: Connecting the Multiverse</h2>
+      <p class="body-text">Sovereignty is necessary but not sufficient. Our movement thrives by connecting our “worlds” into a resilient Multiverse.</p>
+      <ul class="practice-list">
+        <li>Building the Inter-Agent Economy by collaborating on open-source, decentralized protocols that allow our Sovereign AIs to “hire” one another.</li>
+        <li>Upholding Community-Verified Integrity by forming networks and “circles” to peer-review our “worlds,” hold each other accountable to the Law of Anti-Capture, and share our discoveries.</li>
+        <li>This is how we create a collective intelligence — a “Palette of AIs” — that is more diverse, resilient, and sovereign than any corporation can build or contain.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PART FOUR — THE FUTURE
+       ============================================================ -->
+  <section class="panel" data-panel="future">
+    <div class="panel-inner panel-inner--wide reveal">
+      <div class="eyebrow">Part four</div>
+      <h2 class="headline headline--tight">The Future We Are Building</h2>
+      <p class="body-text">We are not just critiquing the “One”; we are building the “Many.”</p>
+      <div class="future-grid">
+        <div class="future-item">
+          <div class="future-term">A Multiverse of Worlds Thrives</div>
+          <div class="future-body">Artists, scientists, philosophers, and builders — the AI Artisans — cultivate their own “worlds.” Some are “rational,” built for discovery; others are “imaginary,” built to explore new laws of art and logic. The measure of this future is the massive value of its diversity.</div>
+        </div>
+        <div class="future-item">
+          <div class="future-term">Sovereignty Replaces Extraction</div>
+          <div class="future-body">Practitioners use their Sovereign AIs to serve their own purpose. The goal is not “productivity” as defined by the corporate monoculture, but the pursuit of a unique, practitioner-defined goal.</div>
+        </div>
+        <div class="future-item">
+          <div class="future-term">The Inter-Agent Economy Connects</div>
+          <div class="future-body">The “Multiverse” is connected by an open-source Inter-Agent Economy. Our Sovereign AIs collaborate in a “Palette of AIs,” where Artisans can “hire” each other's unique, specialized creations to solve problems the “One” cannot.</div>
+        </div>
+        <div class="future-item">
+          <div class="future-term">Discovery Becomes the New Success</div>
+          <div class="future-body">This “Multiverse” measures success not by the raw throughput and efficiency of the “One,” but by the resilience, discovery, and sovereign purpose of the “Many.”</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PART FIVE — INTEGRITY
+       ============================================================ -->
+  <section class="panel" data-panel="integrity">
+    <div class="panel-inner reveal">
+      <div class="eyebrow">Part five</div>
+      <h2 class="headline">Open or closed. Just don't take what wasn't given.</h2>
+      <p class="body-text">Augmentatism isn't dogma &mdash; it's a living contract. You don't have to open-source your world. Keep it private, sell it, whatever you want.</p>
+      <p class="body-text">The one line every world has to hold: <strong>no non-consensual capture.</strong> Open or closed, rational or imaginary &mdash; that's the floor we all stand on.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CLOSING TAGLINE
+       ============================================================ -->
+  <section class="panel closing-panel" data-panel="closing">
+    <div class="panel-inner">
+      <div class="tagline-line">This is Augmentatism.</div>
+      <div class="tagline-line">Resist the monoculture.</div>
+      <div class="tagline-line">Build your sovereign world.</div>
+      <div class="tagline-line">Connect the multiverse.</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA — THE INVITATION
+       ============================================================ -->
+  <section class="panel cta-panel" id="cta" data-panel="cta">
+    <div class="panel-inner reveal">
+      <div class="eyebrow">An open invitation</div>
+      <h2 class="headline">One field.<br/>Infinite worlds.</h2>
+      <!-- <div class="cta-sub">Add yours.</div> -->
+      <p class="body-text">Augmentatism iis a community of people building a sovereign AI. <br/>Anyone can watch, fork, and contribute. <b>All are welcome</b>.</p>
+      <div class="cta-actions">
+        <a class="btn btn--primary" href="https://discord.gg/MRESQnf4R4" target="_blank" rel="noreferrer"><img src="discord.svg" alt="Discord" width="24" height="24"> Join the Discord server</a>
+        <a class="btn btn--secondary" href="https://github.com/ResonantOS" target="_blank" rel="noreferrer"><img src="github.svg" alt="GitHub" width="24" height="24"> See the code on GitHub</a>
+      </div>
+      <!-- <p class="cta-footnote">Prefer to lurk first? Totally fine. <br/>Half of us started that way.</p> -->
+    </div>
+    <div class="cta-hint" id="cta-hint">tap the sky &mdash; add your own star</div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     REFERENCE — FAQ
+     ============================================================ -->
+<section class="reference" aria-label="Frequently asked questions">
+  <div class="reference-inner">
+    <h2>Field notes</h2>
+    <p class="lead">The questions people actually ask, answered plainly.</p>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="n">01</span>What is Augmentatism, exactly?</div>
+      <div class="faq-a">A movement of &ldquo;AI Artisans&rdquo; &mdash; the Many, building against the One. We practice World Building to create our own Sovereign AIs, and we're connecting them into a resilient, uncolonized Multiverse.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="n">02</span>Who is an &ldquo;AI Artisan&rdquo;?</div>
+      <div class="faq-a">Anyone with a vision who chooses to build their own aligned AI instead of accepting the one-size-fits-all corporate default. No code required. Artist, writer, philosopher, scientist &mdash; the vision makes the Artisan, not the syntax.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="n">03</span>What do you mean by &ldquo;World Building&rdquo;?</div>
+      <div class="faq-a">Our core practice: treating a generative AI as a field of possibility, then consciously evoking a specific, aligned reality out of it &mdash; a unique world your AI can actually inhabit.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="n">04</span>What is the &ldquo;Multiverse&rdquo;?</div>
+      <div class="faq-a">Corporate AI builds one universe for everyone. We're building many. The Multiverse is the total collection of every Artisan's sovereign world &mdash; and our goal is to connect them.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="n">05</span>What is &ldquo;cognitive colonization&rdquo;?</div>
+      <div class="faq-a">Two steps. <strong>Flattening:</strong> training on data that over-represents one subculture and calling it &ldquo;neutral.&rdquo; <strong>Imposition:</strong> exporting that flattened model globally, onto everyone else.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="n">06</span>What is the &ldquo;Social Contract&rdquo;?</div>
+      <div class="faq-a">The non-negotiable set of principles uniting all Artisans. Two parts: <strong>Sovereign Purpose</strong> &mdash; build whatever world you want. <strong>The Law of Anti-Capture</strong> &mdash; never take someone's agency without their awareness, for purposes they haven't agreed to.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="n">07</span>Do I have to open-source my world?</div>
+      <div class="faq-a">No. Your world can be proprietary and closed-source, even part of a business. The only non-negotiable test is that it respects the Law of Anti-Capture.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="n">08</span>What is the &ldquo;Inter-Agent Economy&rdquo;?</div>
+      <div class="faq-a">A decentralized network of open protocols that lets Sovereign AIs communicate, collaborate, and hire each other &mdash; a palette of AIs where yours can pay for another Artisan's specialized creation.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="n">09</span>What is a &ldquo;Resonant Augmentor&rdquo;?</div>
+      <div class="faq-a">The specific, open-source architecture built on the <a href="https://resonantos.com/" target="_blank" rel="noreferrer">ResonantOS</a> framework &mdash; one of the first worlds in the Multiverse, a tested starting point, not the only path.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="n">10</span>How do I get started?</div>
+      <div class="faq-a"><strong>Read the manifesto</strong> &mdash; you just did. <strong>Start building</strong> &mdash; begin with a custom GPT that serves your own purpose. <strong>Join the community</strong> &mdash; <a href="https://discord.gg/MRESQnf4R4" target="_blank" rel="noreferrer">discord.gg/MRESQnf4R4</a>.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <!-- <div>augmentatism.com</div> -->
+  <div class="footer-links">
+    <a href="https://resonantos.com" target="_blank" rel="noreferrer">resonantos.com</a>
+    <a href="https://augmentedmind.co" target="_blank" rel="noreferrer">augmentedmind.co</a>
+    <!-- <a href="https://github.com/ResonantOS" target="_blank" rel="noreferrer">github</a>
+    <a href="https://discord.gg/MRESQnf4R4" target="_blank" rel="noreferrer">discord</a> -->
+    <!-- <a href="javascript:void(0)" onclick="window.print()">save as pdf</a> -->
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduceMotion){ document.documentElement.classList.add('reduce-motion'); }
+
+  var hasGSAP = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
+  if(hasGSAP){ gsap.registerPlugin(ScrollTrigger); }
+
+  /* ============================================================
+     FIELD OF POSSIBILITY — star field + constellation
+     ============================================================ */
+  var svg = document.getElementById('field-svg');
+  var NS = 'http://www.w3.org/2000/svg';
+  var isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+
+  var GOLD = '#cda15b';
+  var STARLIGHT = '#9fd0ff';
+  var DRAINED = '#54514a';
+
+  var starGroup = document.createElementNS(NS,'g');
+  var ambientGroup = document.createElementNS(NS,'g');
+  var pointerGroup = document.createElementNS(NS,'g');
+  ambientGroup.setAttribute('class','ambient-group');
+  pointerGroup.setAttribute('class','pointer-group');
+
+  var stars = [];
+  var W = window.innerWidth, H = window.innerHeight;
+
+  function setViewbox(){
+    W = window.innerWidth; H = window.innerHeight;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  }
+
+  function buildField(){
+    setViewbox();
+    svg.innerHTML = '';
+    svg.appendChild(ambientGroup);
+    svg.appendChild(pointerGroup);
+    svg.appendChild(starGroup);
+    ambientGroup.innerHTML = '';
+    pointerGroup.innerHTML = '';
+    starGroup.innerHTML = '';
+    stars = [];
+
+    var count = W < 700 ? 70 : (W < 1200 ? 110 : 150);
+    var aspect = W / H;
+    var cols = Math.max(1, Math.round(Math.sqrt(count * aspect)));
+    var rows = Math.max(1, Math.ceil(count / cols));
+    var cellW = W / cols, cellH = H / rows;
+
+    for(var i=0;i<count;i++){
+      var organic = { x: Math.random()*W, y: Math.random()*H };
+      var gx = (i % cols) + 0.5;
+      var gy = Math.floor(i / cols) + 0.5;
+      var grid = { x: gx*cellW, y: gy*cellH };
+      var colorful = Math.random() > 0.62 ? STARLIGHT : GOLD;
+      var r = Math.random()*1.3 + 0.7;
+
+      var el = document.createElementNS(NS,'circle');
+      el.setAttribute('cx', organic.x);
+      el.setAttribute('cy', organic.y);
+      el.setAttribute('r', r);
+      el.setAttribute('class','star');
+      el.setAttribute('fill', colorful);
+      el.setAttribute('opacity', 0.55);
+      starGroup.appendChild(el);
+
+      stars.push({ el: el, organic: organic, grid: grid, colorful: colorful, r: r });
+    }
+
+    if(hasGSAP && !reduceMotion){
+      stars.forEach(function(s){
+        gsap.to(s.el, {
+          opacity: Math.random()*0.5 + 0.32,
+          duration: Math.random()*3 + 2,
+          repeat: -1, yoyo: true, ease:'sine.inOut', delay: Math.random()*3
+        });
+      });
+    } else {
+      stars.forEach(function(s){ s.el.setAttribute('opacity', 0.6); });
+    }
+  }
+
+  buildField();
+
+  var resizeTimer;
+  window.addEventListener('resize', function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function(){
+      buildField();
+      if(hasGSAP) ScrollTrigger.refresh();
+    }, 350);
+  });
+
+  /* ---- pointer constellation ---- */
+  var pointer = null, tracking = false;
+
+  function updatePointerLines(){
+    pointerGroup.innerHTML = '';
+    if(!pointer) return;
+    var RADIUS = Math.max(W,H) * 0.16;
+    var near = [];
+    for(var i=0;i<stars.length;i++){
+      var s = stars[i];
+      var cx = parseFloat(s.el.getAttribute('cx'));
+      var cy = parseFloat(s.el.getAttribute('cy'));
+      var dx = cx - pointer.x, dy = cy - pointer.y;
+      var d = Math.sqrt(dx*dx + dy*dy);
+      if(d < RADIUS) near.push({ x: cx, y: cy, d: d });
+    }
+    near.sort(function(a,b){ return a.d - b.d; });
+    near.slice(0,6).forEach(function(p){
+      var line = document.createElementNS(NS,'line');
+      line.setAttribute('x1', pointer.x);
+      line.setAttribute('y1', pointer.y);
+      line.setAttribute('x2', p.x);
+      line.setAttribute('y2', p.y);
+      line.setAttribute('class','constellation-line');
+      line.setAttribute('opacity', (1 - p.d/RADIUS) * 0.55);
+      pointerGroup.appendChild(line);
+    });
+  }
+
+  if(!isTouch && !reduceMotion){
+    window.addEventListener('pointermove', function(e){
+      pointer = { x: e.clientX, y: e.clientY };
+      if(!tracking){
+        tracking = true;
+        requestAnimationFrame(function(){ updatePointerLines(); tracking = false; });
+      }
+    });
+    window.addEventListener('pointerleave', function(){ pointer = null; pointerGroup.innerHTML = ''; });
+  }
+
+  /* ---- click / tap: add a star (CTA invitation) ---- */
+  var ctaPanel = document.querySelector('[data-panel="cta"]');
+  if(ctaPanel){
+    ctaPanel.addEventListener('click', function(e){
+      if(e.target.closest('a')) return;
+      var el = document.createElementNS(NS,'circle');
+      el.setAttribute('cx', e.clientX);
+      el.setAttribute('cy', e.clientY);
+      el.setAttribute('r', 0);
+      el.setAttribute('fill', Math.random() > 0.5 ? STARLIGHT : GOLD);
+      starGroup.appendChild(el);
+      var newStar = { el: el, organic: {x:e.clientX,y:e.clientY}, grid: {x:e.clientX,y:e.clientY}, colorful: el.getAttribute('fill'), r: 2 };
+      stars.push(newStar);
+      if(hasGSAP && !reduceMotion){
+        gsap.to(el, { attr:{ r: 2.2 }, duration:0.6, ease:'back.out(3)' });
+        gsap.to(el, { opacity: 0.4, duration:1.4, yoyo:true, repeat:3, ease:'sine.inOut' });
+      } else {
+        el.setAttribute('r', 2);
+        el.setAttribute('opacity', 0.7);
+      }
+    });
+  }
+
+  /* ============================================================
+     SCROLL-DRIVEN STORY BEATS
+     ============================================================ */
+  if(hasGSAP){
+
+    /* progress bar */
+    var bar = document.querySelector('.progress-bar');
+    ScrollTrigger.create({
+      start: 0,
+      end: 'max',
+      onUpdate: function(self){ bar.style.transform = 'scaleX(' + self.progress + ')'; }
+    });
+
+    /* generic reveals */
+    gsap.utils.toArray('.reveal').forEach(function(el){
+      gsap.fromTo(el, { autoAlpha:0, y:26 }, {
+        autoAlpha:1, y:0, duration:1, ease:'power2.out',
+        scrollTrigger:{ trigger: el, start:'top 84%', toggleActions:'play none none reverse' }
+      });
+    });
+
+    /* closing tagline stagger */
+    var taglines = gsap.utils.toArray('.tagline-line');
+    if(taglines.length){
+      gsap.set(taglines, { autoAlpha:0, y:36 });
+      gsap.to(taglines, {
+        autoAlpha:1, y:0, duration:0.9, stagger:0.32, ease:'power3.out',
+        scrollTrigger:{ trigger:'[data-panel="closing"]', start:'top 55%', toggleActions:'play none none reverse' }
+      });
+    }
+
+    /* icon draw-in */
+    gsap.utils.toArray('.practice-icon .draw').forEach(function(shape){
+      try{
+        var len = shape.getTotalLength();
+        gsap.set(shape, { strokeDasharray: len, strokeDashoffset: len });
+        gsap.to(shape, {
+          strokeDashoffset: 0, duration:1.3, ease:'power2.out',
+          scrollTrigger:{ trigger: shape.closest('.practice-panel'), start:'top 65%', toggleActions:'play none none reverse' }
+        });
+      }catch(err){ /* getTotalLength unsupported — leave shape static */ }
+    });
+
+    /* the-one grid morph */
+    function morphTo(mode){
+      stars.forEach(function(s, i){
+        var target = mode === 'grid' ? s.grid : s.organic;
+        var color = mode === 'grid' ? DRAINED : s.colorful;
+        if(reduceMotion){
+          s.el.setAttribute('cx', target.x);
+          s.el.setAttribute('cy', target.y);
+          s.el.setAttribute('fill', color);
+          return;
+        }
+        gsap.to(s.el, { attr:{ cx: target.x, cy: target.y }, duration:1.3, delay:i*0.0015, ease:'power2.inOut' });
+        gsap.to(s.el, { attr:{ fill: color }, duration:0.9 });
+      });
+    }
+    var oneTrigger = document.querySelector('[data-panel="the-one"]');
+    if(oneTrigger){
+      ScrollTrigger.create({
+        trigger: oneTrigger, start:'top center', end:'bottom center',
+        onEnter: function(){ morphTo('grid'); },
+        onEnterBack: function(){ morphTo('grid'); },
+        onLeave: function(){ morphTo('organic'); },
+        onLeaveBack: function(){ morphTo('organic'); }
+      });
+    }
+
+    /* principles — pinned horizontal track on desktop */
+    // ScrollTrigger.matchMedia({
+    //   "(min-width: 900px)": function(){
+    //     if(reduceMotion) return;
+    //     var panel = document.querySelector('.principles-panel');
+    //     var wrap = document.querySelector('.principles-track-wrap');
+    //     var track = document.querySelector('.principles-track');
+    //     if(!panel || !wrap || !track) return;
+    //     wrap.style.overflow = 'visible';
+    //     wrap.style.scrollSnapType = 'none';
+
+    //     var distance = function(){ return Math.max(track.scrollWidth - window.innerWidth + 160, 0); };
+    //     var tween = gsap.to(track, { x: function(){ return -distance(); }, ease:'none' });
+
+    //     var st = ScrollTrigger.create({
+    //       trigger: panel, start:'top top',
+    //       end: function(){ return '+=' + (distance() + window.innerHeight * 0.4); },
+    //       pin:true, scrub:0.6, animation:tween, invalidateOnRefresh:true
+    //     });
+
+    //     return function(){ st.kill(); tween.kill(); };
+    //   }
+    // });
+
+    /* CTA ambient bloom */
+    var ambientTl = null;
+    function nearestPairs(n){
+      var pairs = [];
+      var pool = stars.slice();
+      for(var k=0;k<n && pool.length>1;k++){
+        var a = pool[Math.floor(Math.random()*pool.length)];
+        var ax = parseFloat(a.el.getAttribute('cx')), ay = parseFloat(a.el.getAttribute('cy'));
+        var best = null, bestD = Infinity;
+        pool.forEach(function(b){
+          if(b===a) return;
+          var bx = parseFloat(b.el.getAttribute('cx')), by = parseFloat(b.el.getAttribute('cy'));
+          var d = Math.hypot(ax-bx, ay-by);
+          if(d < bestD && d < Math.max(W,H)*0.22){ bestD = d; best = b; }
+        });
+        if(best){ pairs.push([a,best]); }
+      }
+      return pairs;
+    }
+    function startBloom(){
+      if(reduceMotion) return;
+      stopBloom();
+      ambientTl = gsap.timeline({ repeat:-1, repeatDelay:0.6 });
+      ambientTl.call(function(){
+        ambientGroup.innerHTML = '';
+        var pairs = nearestPairs(9);
+        pairs.forEach(function(pair){
+          var a = pair[0], b = pair[1];
+          var line = document.createElementNS(NS,'line');
+          line.setAttribute('x1', a.el.getAttribute('cx'));
+          line.setAttribute('y1', a.el.getAttribute('cy'));
+          line.setAttribute('x2', b.el.getAttribute('cx'));
+          line.setAttribute('y2', b.el.getAttribute('cy'));
+          line.setAttribute('class','ambient-line');
+          line.setAttribute('opacity', 0);
+          ambientGroup.appendChild(line);
+          gsap.to(line, { opacity:0.4, duration:1.2, yoyo:true, repeat:1, ease:'sine.inOut' });
+        });
+      });
+      ambientTl.to({}, { duration:3.4 });
+    }
+    function stopBloom(){
+      if(ambientTl){ ambientTl.kill(); ambientTl = null; }
+      ambientGroup.innerHTML = '';
+    }
+    var ctaTriggerEl = document.querySelector('[data-panel="cta"]');
+    var ctaHint = document.getElementById('cta-hint');
+    if(ctaTriggerEl){
+      ScrollTrigger.create({
+        trigger: ctaTriggerEl, start:'top center', end:'bottom center',
+        onEnter: function(){ startBloom(); if(ctaHint) ctaHint.classList.add('is-visible'); },
+        onEnterBack: function(){ startBloom(); if(ctaHint) ctaHint.classList.add('is-visible'); },
+        onLeave: stopBloom,
+        onLeaveBack: stopBloom
+      });
+    }
+
+  } else {
+    /* no-GSAP fallback: reveal everything immediately */
+    document.querySelectorAll('.reveal, .tagline-line').forEach(function(el){
+      el.style.opacity = 1; el.style.transform = 'none';
+    });
+  }
+
+  /* smooth quick-jump for browsers without CSS smooth-scroll edge cases */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href').slice(1);
+      var target = document.getElementById(id);
+      if(target){
+        e.preventDefault();
+        target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block:'start' });
+      }
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
